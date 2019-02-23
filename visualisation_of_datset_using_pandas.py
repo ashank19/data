@@ -78,3 +78,17 @@ df.drop(df.index[99832],inplace=True)
 
 # Checking the result
 df.query('Age <0')
+
+#Filtering the dataset on the basis of patients who did show up at the appointment and those who
+# didn't, further dividing them into two different datasets.
+df1=df.query('No_show == "No" ')
+df2=df.query('No_show == "Yes" ')
+df1.describe()
+
+#From the above descriptive statistics of df1 it is clear that among the patients who did attend the appointment
+
+#Majority were not suffering from any type of disease mentioned in the dataset viz Hipertension,Diabetes etc.
+
+#Majority did not receive the Scholarship.
+
+#Majority of them did receive the SMS.
