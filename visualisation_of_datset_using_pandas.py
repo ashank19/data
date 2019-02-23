@@ -120,3 +120,25 @@ df1.loc[:,'Age_group']=" "
 df2.loc[:,'Age_group']=" ";
 # Checking the results
 df1.head(1)
+# Filling the new column with values as defined above
+w=df1['Age']
+for i,c in enumerate(w):
+    if (c<=18):
+        df1.iloc[i,-1]='Minor'
+    elif(c>18 and c<=30):
+        df1.iloc[i,-1]='Adult'
+    elif(c>30 and c<=60):
+        df1.iloc[i,-1]='Mature'
+    else:
+        df1.iloc[i,-1]='Senior_Citizen'
+# Similarly for df2 dataframe
+w1=df2['Age']
+for i,c in enumerate(w1):
+    if (c<=18):
+        df2.iloc[i,-1]='Minor'
+    elif(c>18 and c<=30):
+        df2.iloc[i,-1]='Adult'
+    elif(c>30 and c<=60):
+        df2.iloc[i,-1]='Mature'
+    else:
+        df2.iloc[i,-1]='Senior_Citizen'        
