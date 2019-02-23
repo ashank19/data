@@ -75,3 +75,6 @@ df.query('Age <0')
 
 # Dropping that particular row
 df.drop(df.index[99832],inplace=True)
+
+# Checking the result
+df.query('Age <0')
