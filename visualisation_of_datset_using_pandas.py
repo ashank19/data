@@ -92,3 +92,31 @@ df1.describe()
 #Majority did not receive the Scholarship.
 
 #Majority of them did receive the SMS.
+
+df2.describe()
+
+#From the above descriptive statistics of df2 it is clear that among the patients who did not attend the appointment
+
+#Majority were not suffering from any type of disease mentioned in the dataset viz Hipertension,Diabetes etc.
+
+#Majority did not receive the Scholarship.
+
+#Majority of them did receive the SMS.
+
+#As it can be seen above there is a wide variation in the age of the patients present so adding a new column Age_group which will show in which category does the patients belong.
+
+#Category is divided as
+
+#Age <18 Minor
+
+#18<Age<30 Adult
+
+#30<Age<60 Mature
+
+#60<Age Senior_Citizen
+
+# Adding new column and intialising it
+df1.loc[:,'Age_group']=" "
+df2.loc[:,'Age_group']=" ";
+# Checking the results
+df1.head(1)
