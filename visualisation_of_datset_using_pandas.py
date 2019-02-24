@@ -141,4 +141,6 @@ for i,c in enumerate(w1):
     elif(c>30 and c<=60):
         df2.iloc[i,-1]='Mature'
     else:
-        df2.iloc[i,-1]='Senior_Citizen'        
+        df2.iloc[i,-1]='Senior_Citizen'
+# Checking for results
+df1.head(2)
