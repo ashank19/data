@@ -144,3 +144,47 @@ for i,c in enumerate(w1):
         df2.iloc[i,-1]='Senior_Citizen'
 # Checking for results
 df1.head(2)
+# Similarly checking for df2
+df2.head(2)
+#Exploratory Data Analysis
+#Is there any difference in age group distribution for those who did show up at the appointment and those who didn't?
+# Using pie-chart to answer the above question for both sections od dataset df1 and df2.
+# For df1 the Pie-chart is
+age_dist=df1['Age_group'].value_counts()
+age_dist.plot(kind='pie',figsize=(20,10));
+# Similarly for df2 dataset
+age_dist1=df2['Age_group'].value_counts()
+age_dist1.plot(kind='pie',figsize=(20,10));
+#From the above two charts it can be concluded that the proportion of Mature and Minor age group in both df1 and df2 datasets are approximately same,but the proportions for Adult and Senior Citizen age groups are different for each subset of dataframe.
+#What proportion of patients received scholarship who did attend the appointment(trying to get an insight whether scholarship does impact their presence for the appointment)?
+# Here bar charts have been used to compare the proportions of students who received scholarships
+# Comparing the proportions for those who did show up at the appointment
+c1=df1['Scholarship'].value_counts()
+k=["No","Yes"]
+plt.bar(k,[c1[0]/(c1[0]+c1[1]),c1[1]/(c1[0]+c1[1])])
+plt.title("Distribution of patients having received scholarships who did show up at the Appointment")
+plt.xlabel("Scholarship status")
+plt.ylabel("Number of Patients");
+# Similarly comparing the proportions for those who did not show up at the appointment
+c2=df2['Scholarship'].value_counts()
+plt.bar(k,[c2[0]/(c2[0]+c2[1]),c2[1]/(c2[0]+c2[1])])
+plt.title("Distribution of patients having received scholarships who did not show up at the Appointment")
+plt.xlabel("Scholarship status")
+plt.ylabel("Number of Patients");
+From the above two Bar charts it is clear that the proportions of students who did receive the scholarship for both sub-datasets df1 and df2 are approximately same.
+Thus it can be concluded that Scholarships doesn't affect the presence of patients at the Appointment.
+Distribution of patients on gender basis who did not show up at the appointment but are suffering from Alcoholism
+# First dividing the the df2 dataset into two groups of males and females
+df2_m=df2.query('Gender == "M"')
+df2_f=df2.query('Gender == "F"')
+# Now plotting the proportions of males and females who are suffereing from alcoholism but did not show up
+# at the Appointment
+count_m=df2_m['Alcoholism'].value_counts()
+k1=["Males","Females"]
+count_f=df2_f['Alcoholism'].value_counts()
+plt.bar(k1,[count_m[1]/(count_m[1]+count_m[0]),count_f[1]/(count_f[0]+count_f[1])])
+plt.title("Distribution of patients on gender who did not attend the appointment but are suffering from Alcoholism")
+plt.xlabel("Gender")
+plt.ylabel("Number of Patients");
+
+#It can be concluded from above visualisation that the proportion of males suffering from alcoholism are more than that of women in the group of not attending the appointment.
