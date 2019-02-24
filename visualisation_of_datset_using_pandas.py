@@ -279,6 +279,7 @@ result_log=reg_log.fit()
 result_log.summary2()
 
 #Confusion Matrix
+
 #Find the confusion matrix of the model and estimate its accuracy.
 
 #A function has been defined that finds the confusion matrix and the model accuracy.
@@ -313,8 +314,42 @@ def confusion_matrix(data,actual_values,model):
         # Return the confusion matrix and
         return cm, accuracy
 
+
 # Checking the accuracy
 
 confusion_matrix(X,y,result_log)
+
+#Testing the model
+
+#Declaring the dependent and the independent variables
+
+estimators=['Gender','Age','Scholarship','Hipertension','Diabetes','Alcoholism','Handcap','SMS_received']
+​
+X1 = test_data[estimators]
+y1 = test_data['No_show']
+
+#Finding the confusion matrix and estimating its accuracy.
+
+# Checking the accuracy
+
+confusion_matrix(X1,y1,result_log)
+
+#Looking at the test acccuracy we see a number which is a tiny but lower: 78.01%, compared to 78.42% for train accuracy.
+
+#In general, we always expect the test accuracy to be lower than the train one.
+
+
+#Conclusions
+
+
+#The proportion of Mature and Minor age group in both df1 and df2 datasets are approximately same,but the proportions for Adult and Senior Citizen age groups are different for each subset of dataframe.
+
+#The Bar-charts for scholarships clearly indicate that it doesn't impact the presence of patients at the appointment.
+
+#The proportion of males suffering from alcoholism are more than that of women in the group of not attending the appointment.
+
+#From predictive analysis it is clear that my model fits the dataset fairly.
+
+#No correlation has been found for the patients who did attend the appointment with any of the features may be more features could help draw a conclusion.
 
         
