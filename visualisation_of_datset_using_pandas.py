@@ -351,5 +351,3 @@ confusion_matrix(X1,y1,result_log)
 #From predictive analysis it is clear that my model fits the dataset fairly.
 
 #No correlation has been found for the patients who did attend the appointment with any of the features may be more features could help draw a conclusion.
-
-        
