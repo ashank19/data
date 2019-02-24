@@ -168,6 +168,7 @@ for i,c in enumerate(w1):
 # Checking for results
 
 df1.head(2)
+
 # Similarly checking for df2
 
 df2.head(2)
@@ -182,6 +183,7 @@ age_dist=df1['Age_group'].value_counts()
 age_dist.plot(kind='pie',figsize=(20,10));
 
 # Similarly for df2 dataset
+
 age_dist1=df2['Age_group'].value_counts()
 age_dist1.plot(kind='pie',figsize=(20,10));
 
@@ -201,6 +203,7 @@ plt.ylabel("Number of Patients");
 
 
 # Similarly comparing the proportions for those who did not show up at the appointment
+
 c2=df2['Scholarship'].value_counts()
 plt.bar(k,[c2[0]/(c2[0]+c2[1]),c2[1]/(c2[0]+c2[1])])
 plt.title("Distribution of patients having received scholarships who did not show up at the Appointment")
@@ -230,3 +233,88 @@ plt.xlabel("Gender")
 plt.ylabel("Number of Patients");
 
 #It can be concluded from above visualisation that the proportion of males suffering from alcoholism are more than that of women in the group of not attending the appointment.
+
+
+##Predictive Analysis
+#Here the main dataset has been split into two parts viz training part and testing part
+
+#On the training part logistic regression has been performed and a model has been created also it's accuracy has been tested.
+
+#On the testing part the model obtained from training dataset is tested for it's accuracy. Generally it's accuracy is less from training part and it is higher just by luck.
+
+# Creating a copy of above dataset
+
+data=df.copy()
+
+# Dropping columns
+
+data.drop(columns=['PatientId','AppointmentID','ScheduledDay','AppointmentDay','Neighbourhood'],axis=1,inplace=True)
+
+# Checking for results
+
+data.head(2)
+
+# Mapping the values for logistic regression
+
+data['Gender']=data['Gender'].map({'F':0,'M':1})
+data['No_show']=data['No_show'].map({'No':0,'Yes':1})
+
+# Splitting the dataset in 9:1 ratio
+
+train_data=data.iloc[:99474,:]
+test_data=data.iloc[99474:,:]
+
+#Declaring the independent variable(s)
+
+estimators=['Gender','Age','Scholarship','Hipertension','Diabetes','Alcoholism','Handcap','SMS_received']
+​
+X = train_data[estimators]
+y = train_data['No_show']
+
+#Performing Logistic Regression
+
+
+reg_log=sm.Logit(y,X)
+result_log=reg_log.fit()
+result_log.summary2()
+
+#Confusion Matrix
+#Find the confusion matrix of the model and estimate its accuracy.
+
+#A function has been defined that finds the confusion matrix and the model accuracy.
+
+def confusion_matrix(data,actual_values,model):
+
+        # Confusion matrix
+
+        # Parameters
+        # ----------
+        # data: data frame or array
+            # data is a data frame formatted in the same way as your input data (without the actual values)
+            # e.g. const, var1, var2, etc. Order is very important!
+        # actual_values: data frame or array
+            # These are the actual values from the test_data
+            # In the case of a logistic regression, it should be a single column with 0s and 1s
+
+        # model: a LogitResults object
+            # this is the variable where you have the fitted model
+            # e.g. results_log in this course
+        # ----------
+
+        #Predict the values using the Logit model
+        pred_values = model.predict(data)
+        # Specify the bins
+        bins=np.array([0,0.5,1])
+        # Create a histogram, where if values are between 0 and 0.5 tell will be considered 0
+        # if they are between 0.5 and 1, they will be considered 1
+        cm = np.histogram2d(actual_values, pred_values, bins=bins)[0]
+        # Calculate the accuracy
+        accuracy = (cm[0,0]+cm[1,1])/cm.sum()
+        # Return the confusion matrix and
+        return cm, accuracy
+
+# Checking the accuracy
+
+confusion_matrix(X,y,result_log)
+
+        
