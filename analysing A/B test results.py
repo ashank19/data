@@ -37,3 +37,17 @@ random.seed(42)
 
 df=pd.read_csv('ab_data.csv')
 df.head()
+
+#the number of rows in the dataset.
+
+df.shape[0]
+
+#number of unique users in the dataset.
+
+df.user_id.nunique()
+
+#The proportion of users converted.
+
+k=df.groupby(['user_id'])['converted'].mean()
+t=pd.DataFrame(k)
+t.mean()
