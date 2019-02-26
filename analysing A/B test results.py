@@ -30,3 +30,10 @@ import matplotlib.pyplot as plt
 #Setting the seed
 
 random.seed(42)
+
+# Now, reading in the ab_data.csv data. Store it in df.
+
+# Read in the dataset and take a look at the top few rows here:
+
+df=pd.read_csv('ab_data.csv')
+df.head()
