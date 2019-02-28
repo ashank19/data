@@ -1,6 +1,6 @@
 Data visualisation using pandas.
  One can just copy the code and excute on your python platform.
- Propose new changes using new commits in a new branch.
+ Also any issues encountered can be put up and I would welcome any suggestions or improvements or any addition.
 
 Steps to install jupyter notebook (having installed python is a prerequisite)
  
