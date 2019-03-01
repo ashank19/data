@@ -98,3 +98,16 @@ df2.query('user_id == 773192')
 
 df2['converted'].mean()
 
+#Given that an individual was in the control group, probability they converted?
+
+df_grp = df2.groupby('group')
+df_grp.describe()
+
+#What is the probability that an individual received the new page?
+
+df2.query('landing_page == "new_page"').user_id.nunique()/df2.user_id.nunique()
+
+#Conclusion
+
+#No, there is insufficient evidence that new treatment leads to more conversions as the results obtained are reverse.
+
