@@ -111,3 +111,68 @@ df2.query('landing_page == "new_page"').user_id.nunique()/df2.user_id.nunique()
 #The conversion rate for 𝑝𝑛𝑒𝑤 under the null
 
 p_new=df2['converted'].mean()
+
+#The conversion rate for  𝑝𝑜𝑙𝑑  under the null
+
+p_old=df2['converted'].mean()
+
+#𝑛𝑛𝑒𝑤 , the number of individuals in the treatment group
+
+n_new=df2.query('group =="treatment"').user_id.nunique()
+
+#𝑛𝑜𝑙𝑑 , the number of individuals in the control group
+
+n_old=df2.query('group =="control"').user_id.nunique()
+
+#Simulating  𝑛𝑛𝑒𝑤  transactions with a conversion rate of  𝑝𝑛𝑒𝑤  under the null and storing these  𝑛𝑛𝑒𝑤  1's and 0's in new_page_converted.
+
+new_page_converted = np.random.choice([0,1],n_new, p=(1-p_new,p_new))
+
+#Simulate  𝑛𝑜𝑙𝑑  transactions with a conversion rate of  𝑝𝑜𝑙𝑑  under the null storing these  𝑛𝑜𝑙𝑑  1's and 0's in old_page_converted.
+
+old_page_converted = np.random.choice([0,1],n_old, p=(1-p_old,p_old))
+
+#𝑝𝑛𝑒𝑤  - 𝑝𝑜𝑙𝑑 simulated values
+
+obs_diff=new_page_converted.mean()-old_page_converted.mean()
+
+#Creating 10,000  𝑝𝑛𝑒𝑤  -  𝑝𝑜𝑙𝑑  values using the same simulation process used above. Storing all 10,000 values in a NumPy array called p_diffs.
+
+p_diffs=[]
+size=df.shape[0]
+
+for i in range(10000):
+    samp=df2.sample(size,replace=True)
+    old_samp_conv=np.random.choice([0,1],n_old, p=(p_old,1-p_old))
+    new_samp_conv= np.random.choice([0,1],n_new, p=(p_new,1-p_new))
+    p_diffs.append(new_samp_conv.mean()-old_samp_conv.mean())
+
+#A histogram of the p_diffs.This plot looks like what we expected.
+
+p_diffs=np.array(p_diffs)
+plt.hist(p_diffs)
+plt.show()
+
+#Proportion of the p_diffs are greater than the actual difference observed in ab_data.csv
+
+convert_new = df2.query('converted == 1 and landing_page == "new_page"')['user_id'].nunique()
+convert_old = df2.query('converted == 1 and landing_page == "old_page"')['user_id'].nunique()
+actual_cvt_new = float(convert_new)/ float(n_new)
+actual_cvt_old = float(convert_old)/ float(n_old)
+obs_diff = actual_cvt_new - actual_cvt_old
+null_vals = np.random.normal(0, p_diffs.std(), p_diffs.size)
+plt.hist(null_vals)
+
+
+#Plot vertical line for observed statistic
+
+plt.axvline(x=obs_diff,color ='red')
+(null_vals > obs_diff).mean()
+
+#Type I error rate of 5%, and Pold > Alpha, we fail to reject the null.
+
+#Therefore, the data show, with a type I error rate of 0.05, that the old page has higher probablity of convert rate than new page.
+
+#P-Value: The probability of observing our statistic or a more extreme statistic from the null hypothesis.
+
+#We could also use a built-in to achieve similar results. Though using the built-in might be easier to code, the above portions are a walkthrough of the ideas that are critical to correctly thinking about statistical significance.Calculate the number of conversions for each page, as well as the number of individuals who received each page. Let n_old and n_new refer the number of rows associated with the old page and new pages, respectively.
