@@ -1,15 +1,15 @@
-# Query for finding the top ten best customer on the basis of invoice total
+# Query for finding the top ten customer who spent the most money in the store.
 
-#SELECT Customer.CustomerId,sum(Invoice.Total) best
+SELECT Customer.CustomerId,sum(Invoice.Total) best
 
-#FROM Invoice
+FROM Invoice
 
-#JOIN Customer
+JOIN Customer
 
-#On Invoice.CustomerId = Customer.CustomerId
+On Invoice.CustomerId = Customer.CustomerId
 
-#GROUP BY Customer.CustomerId
+GROUP BY Customer.CustomerId
 
-#ORDER BY best DESC
+ORDER BY best DESC
 
-#LIMIT 10
+LIMIT 10
