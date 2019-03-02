@@ -13,3 +13,29 @@ GROUP BY Customer.CustomerId
 ORDER BY best DESC
 
 LIMIT 10
+
+# Query for top ten music artists by number of songs
+
+SELECT count(*) Songs,Artist.ArtistId,Artist.Name
+
+FROM Artist
+
+JOIN Album
+
+On Artist.ArtistId = Album.ArtistId
+
+JOIN Track
+
+On Album.AlbumId = Track.AlbumId
+
+JOIN Genre
+
+On Track.GenreId = Genre.GenreId
+
+WHERE Genre.Name = 'Rock'
+
+Group BY Artist.Name
+
+ORDER BY Songs DESC
+
+LIMIT 10
