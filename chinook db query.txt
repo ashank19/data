@@ -39,3 +39,28 @@ Group BY Artist.Name
 ORDER BY Songs DESC
 
 LIMIT 10
+
+#Query for top ten most earning artists
+
+
+SELECT Artist.Name,SUM(InvoiceLine.UnitPrice*InvoiceLine.Quantity) Amount
+
+FROM Artist
+
+JOIN Album
+
+On Artist.ArtistId = Album.ArtistId
+
+JOIN Track
+
+On Album.AlbumId = Track.AlbumId
+
+JOIN InvoiceLine
+
+On Track.TrackId = InvoiceLine.TrackId
+
+GROUP BY Artist.Name
+
+ORDER BY Amount DESC
+
+LIMIT 10
