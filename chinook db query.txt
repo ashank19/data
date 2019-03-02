@@ -1,0 +1,15 @@
+# Query for finding the top ten best customer on the basis of invoice total
+
+#SELECT Customer.CustomerId,sum(Invoice.Total) best
+
+#FROM Invoice
+
+#JOIN Customer
+
+#On Invoice.CustomerId = Customer.CustomerId
+
+#GROUP BY Customer.CustomerId
+
+#ORDER BY best DESC
+
+#LIMIT 10
