@@ -64,3 +64,35 @@ GROUP BY Artist.Name
 ORDER BY Amount DESC
 
 LIMIT 10
+
+#SELECT Customer.CustomerId,Customer.FirstName,Customer.LastName,SUM(InvoiceLine.UnitPrice*InvoiceLine.Quantity) Amount
+
+FROM Customer
+
+JOIN Invoice
+
+On Customer.CustomerId = Invoice.CustomerId
+
+JOIN InvoiceLine
+
+On Invoice.InvoiceId = InvoiceLine.InvoiceId
+
+JOIN Track
+
+On InvoiceLine.TrackId = Track.TrackId
+
+JOIN Album
+
+On Track.AlbumId = Album.AlbumId
+
+JOIN Artist
+
+On Album.ArtistId = Artist.ArtistId
+
+WHERE Artist.Name = 'Iron Maiden'
+
+GROUP BY Customer.CustomerId
+
+ORDER BY Amount DESC
+
+LIMIT 10
