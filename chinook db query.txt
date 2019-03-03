@@ -14,7 +14,7 @@ ORDER BY best DESC
 
 LIMIT 10
 
-# Query for top ten music artists by number of songs
+# Query for top ten music artists by number of rock songs
 
 SELECT count(*) Songs,Artist.ArtistId,Artist.Name
 
@@ -65,7 +65,9 @@ ORDER BY Amount DESC
 
 LIMIT 10
 
-#SELECT Customer.CustomerId,Customer.FirstName,Customer.LastName,SUM(InvoiceLine.UnitPrice*InvoiceLine.Quantity) Amount
+#Query for top ten purchasers for the most earning artists
+
+SELECT Customer.CustomerId,Customer.FirstName,Customer.LastName,SUM(InvoiceLine.UnitPrice*InvoiceLine.Quantity) Amount
 
 FROM Customer
 
