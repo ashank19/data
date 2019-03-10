@@ -336,7 +336,7 @@ confusion_matrix(X1,y1,result_log)
 
 #Looking at the test acccuracy we see a number which is a tiny but lower: 78.01%, compared to 78.42% for train accuracy.
 
-#In general, we always expect the test accuracy to be lower than the train one.
+#In general, we always expect the test accuracy to be lower than the training one.
 
 
 #Conclusions
