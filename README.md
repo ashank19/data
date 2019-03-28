@@ -1,4 +1,4 @@
-Data visualisation using pandas.
+Investigating a dataset using pandas.
  One can just copy the code and excute on your python platform.
  Also any issues encountered can be put up and I would welcome any suggestions or improvements or any addition.
 
