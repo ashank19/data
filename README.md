@@ -1,4 +1,4 @@
-This branch contains projects based on sql and tableau.
+This branch contains projects based on sql,tableau and microsoft excel.
 
 The chinook .db is the database of a music store and queries related to it are present as text files with each file containing the code of the specific query along with it's code.
  
@@ -12,6 +12,11 @@ The two links above contain the queries and visual presentation after pulling th
  
  
 The Tableau project contains complete summary and overview of actions performed in the project along with the links attached for dashboard and story.
-Steps to download tsv files in pandas programmatically.
+
+
+Survey Project in Excel
+
+This is a survey project based on the students survey data provided by the Udacity. Here I performed 
+my own data analysis and created a presentation to share that documents my findings. I started by taking a look at the dataset and brainstorming what questions I could answer.Then using spreadsheets or another Excel-like software to answer the questions I was most interested in, and created a report sharing the answers.
 
 
